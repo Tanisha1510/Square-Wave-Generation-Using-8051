@@ -35,7 +35,34 @@ o	Resistor (1kΩ) (if using hardware)
 
 
 ## Program:
-
+```
+#include<reg51.h>
+ sbit wave=P1^0;
+ void delay();
+ void main()
+ {
+ wave=0;
+ while(1)
+ {
+ wave=1;
+ delay();
+ wave=0;
+ delay();
+ }
+ }
+ void delay()
+ {
+ unsigned char i;
+ TMOD=0X10;
+ for(i=0;i<14;i++)
+ {
+ TH1=0X00;
+ TL1=0X00;
+ TR1=1;
+ while(TF1==0);
+ TF1=0;
+}}
+```
 ## Output:
 <img width="1920" height="1200" alt="Screenshot 2026-03-16 112059" src="https://github.com/user-attachments/assets/0f29f523-cf96-47af-8a6a-1ea582a360ae" />
 <img width="1380" height="881" alt="Screenshot 2026-03-16 113704" src="https://github.com/user-attachments/assets/23b9fd3b-4125-4563-9fe3-fdf4c51b5111" />
